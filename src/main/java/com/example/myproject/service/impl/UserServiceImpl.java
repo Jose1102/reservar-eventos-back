@@ -1,5 +1,6 @@
 package com.example.myproject.service.impl;
 
+import com.example.myproject.dto.UserDto;
 import com.example.myproject.model.User;
 import com.example.myproject.repository.UserRepository;
 import com.example.myproject.service.UserService;
@@ -29,5 +30,10 @@ public class UserServiceImpl implements UserService {
 
         User user = userRepository.findByEmail(email);
         return user;
+    }
+
+    @Override
+    public User addUser(UserDto userDto) {
+        return userRepository.save( new User(userDto));
     }
 }

@@ -1,6 +1,7 @@
 package com.example.myproject.model;
 
 
+import com.example.myproject.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -26,5 +27,14 @@ public class User {
     public User(){
 
     }
+
+    public User(UserDto userDto){
+        this.id = userDto.getId();
+        this.nombre = userDto.getNombre();
+        this.correo = userDto.getCorreo();
+
+    }
+
+
 
 }

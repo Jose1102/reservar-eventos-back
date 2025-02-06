@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().and()  // Habilita CORS
                 .csrf().disable()  // Deshabilita CSRF (si lo deseas)
                 .authorizeRequests()
-                .antMatchers("/api/v1/token").permitAll()  // Permite el acceso a /api/v1/token sin autenticación
+                .antMatchers("/api/v1/token","/api/v1/addUser").permitAll()  // Permite el acceso a /api/v1/token sin autenticación
                 .anyRequest().authenticated()  // Requiere autenticación para otras rutas
                 .and()
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)  // Agrega el filtro de JWT

@@ -26,7 +26,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, javax.servlet.http.HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        if (request.getRequestURI().equals("/api/v1/token")) {
+        if (request.getRequestURI().equals("/api/v1/token") || request.getRequestURI().equals("/api/v1/addUser")) {
             filterChain.doFilter(request, response); // Continuar con el siguiente filtro si es la ruta para generar token
             return;
         }

@@ -1,17 +1,17 @@
 package com.example.myproject.contoller;
 
 
+import com.example.myproject.dto.UserDto;
 import com.example.myproject.model.User;
 import com.example.myproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletException;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -50,11 +50,16 @@ public class UserController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
 
+    }
 
-
-
-
-
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/api/v1/addUser")
+    public ResponseEntity<User> addUser(@RequestBody UserDto user) throws ServletException, IOException {
+        try{
+            User newUser = service.addUser(user);
+            return new ResponseEntity<>(newUser, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
     }
 
 
