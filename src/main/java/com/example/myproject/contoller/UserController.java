@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -31,6 +32,27 @@ public class UserController {
         }
 
         return new ResponseEntity<>(users, HttpStatus.OK);
+
+
+    }
+
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/api/v1/userByEmail")
+    public ResponseEntity<User> consultUserByEmail(
+            @RequestParam(required = true, name = "email") String email
+    ) throws Exception {
+
+
+        try{
+            User users = service.consultUserByEmail(email);
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+
+
+
+
 
 
     }
