@@ -21,6 +21,8 @@ public class UserController {
     @Autowired
     UserService service;
 
+
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/api/v1/userAll")
     public ResponseEntity<List<User>> consultAllUser() {
         List<User> users = service.consultAllUser();
